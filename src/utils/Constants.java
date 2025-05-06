@@ -17,6 +17,11 @@ public final class Constants {
     public static final int PLAYER_HEIGHT = 80;
     public static final int PLAYER_SPEED = 10;
 
+    public static final String BALL_IMAGE_PATH = "resources/ball.png";
+    public static final int BALL_WIDTH = 50;
+    public static final int BALL_HEIGHT = 50;
+    public static final int BALL_SPEED = 10;
+
     // Wall constants
     public static final String WALL_IMAGE_PATH = "resources/wall.png";
     public static final int WALL_WIDTH = 150;
