@@ -11,7 +11,7 @@ public class Ball extends Sprite{
 
     public void resetBall(){
         //position ball to centre of screen
-        //reset ball velocit
+        //reset ball velocity
     }
 
     @Override
