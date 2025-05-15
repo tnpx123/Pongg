@@ -24,29 +24,39 @@ public class Board extends JPanel implements ActionListener, KeyListener {
         setBackground(Color.GRAY);
 
         ball = new Ball();
-        leftPaddle = new Paddle();
-        rightPaddle = new Paddle();
-        sprites = new ArrayList<>(List.of(ball));
+        leftPaddle = new Paddle(KeyEvent.VK_W, KeyEvent.VK_S, 0);
+        rightPaddle = new Paddle(KeyEvent.VK_UP, KeyEvent.VK_DOWN, BOARD_WIDTH - PADDLE_WIDTH);
+        sprites = new ArrayList<>(List.of(ball, leftPaddle, rightPaddle));
 
         activeKeyCodes = new HashSet<>();
 
         new Timer(TICK_DELAY, this).start();
-        rightPaddle = null;
-        leftPaddle = null;
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        player.handleActiveKeys(activeKeyCodes);
+        leftPaddle.handleActiveKeys(activeKeyCodes);
+        rightPaddle.handleActiveKeys(activeKeyCodes);
 
         for(Sprite sprite : sprites) {
             sprite.tick();
         }
 
         if (ball.isColliding(leftPaddle)){
-            //make ball bounce right
+            ball.bounceRight();
         } else if (ball.isColliding(rightPaddle)) {
-            //make ball bounce left
+            ball.bounceLeft();
+        }
+
+        if (ball.getPos().x <= 0 || ball.getPos().x >= BOARD_WIDTH - BALL_WIDTH){
+            ball.flipVx();
+        }
+
+
+        if (ball.getPos().x <= BOARD_WIDTH - BALL_WIDTH){
+            //player winning point
+        } else if (ball.getPos().x >= BOARD_WIDTH - BALL_WIDTH){
+
         }
 
         repaint();
@@ -59,6 +69,9 @@ public class Board extends JPanel implements ActionListener, KeyListener {
         for(Sprite sprite : sprites) {
             sprite.draw(graphics, this);
         }
+
+        graphics.setFont(new Font("Arial", Font.BOLD, 42));
+        graphics.drawString(("Hello World"), 20, 20);
     }
 
     @Override

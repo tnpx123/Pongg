@@ -40,15 +40,22 @@ public class Ball extends Sprite {
     @Override
     public void tick() {
         getPos().translate((int) vx, (int) vy);
-        pos.x = Math.clamp(pos.x, 0, BOARD_WIDTH - BALL_WIDTH);
-        pos.y = Math.clamp(pos.y, 0, BOARD_HEIGHT - BALL_HEIGHT);
 
-
-
-        if (pos.y <= 0){
-            vy *= -1;
-        } else if (pos.y >= BOARD_HEIGHT - BALL_HEIGHT) {
+        if (pos.y <= 0 || pos.y >= BOARD_HEIGHT - BALL_HEIGHT) {
             vy *= -1;
         }
     }
+
+    public void bounceRight() {
+        vx = Math.abs(vx) * 1.05;
+    }
+
+    public void bounceLeft() {
+        vx = -Math.abs(vx) * 1.05;
+    }
+
+    public void flipVx() {
+        vx = -vx;
+    }
+
 }
