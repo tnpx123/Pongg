@@ -8,6 +8,8 @@ public class Ball extends Sprite {
     Random r = new Random();
     private int x;
     private int y;
+    int[] directionChoices = {-1,1};
+
 
 
     public Ball() {
@@ -17,20 +19,19 @@ public class Ball extends Sprite {
 
 
     public void resetBall() {
-        int r1 = r.nextInt(4);
-        if (r1 == 0) {
-            vx = -BALL_SPEED;
-            vy = -BALL_SPEED;
-        } else if (r1 == 1) {
-            vx = BALL_SPEED;
-            vy = BALL_SPEED;
-        } else if (r1 == 2) {
-            vx = BALL_SPEED;
-            vy = -BALL_SPEED;
-        } else {
-            vx = -BALL_SPEED;
-            vy = BALL_SPEED;
-        }
+
+        vx = 0;
+        vy = 0;
+        // Move the ball to the center of the screen
+        this.pos.x = BOARD_WIDTH / 2 - BALL_WIDTH /2;
+        this.pos.y = BOARD_HEIGHT / 2 - BALL_HEIGHT /2;
+
+        // Set random starting direction
+        int randomX = directionChoices[r.nextInt(directionChoices.length)];
+        int randomY = directionChoices[r.nextInt(directionChoices.length)];
+
+        vx = BALL_SPEED * randomX;
+        vy = BALL_SPEED * randomY;
         //position ball to centre of screen
         //reset ball velocity
     }
@@ -44,6 +45,8 @@ public class Ball extends Sprite {
         if (pos.y <= 0 || pos.y >= BOARD_HEIGHT - BALL_HEIGHT) {
             vy *= -1;
         }
+
+
     }
 
     public void bounceRight() {

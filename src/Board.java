@@ -24,8 +24,9 @@ public class Board extends JPanel implements ActionListener, KeyListener {
         setBackground(Color.GRAY);
 
         ball = new Ball();
-        leftPaddle = new Paddle(KeyEvent.VK_W, KeyEvent.VK_S, 0);
-        rightPaddle = new Paddle(KeyEvent.VK_UP, KeyEvent.VK_DOWN, BOARD_WIDTH - PADDLE_WIDTH);
+        //passed args for x pos to add padding to paddles
+        leftPaddle = new Paddle(KeyEvent.VK_W, KeyEvent.VK_S, 10);
+        rightPaddle = new Paddle(KeyEvent.VK_UP, KeyEvent.VK_DOWN, BOARD_WIDTH - PADDLE_WIDTH -10);
         sprites = new ArrayList<>(List.of(ball, leftPaddle, rightPaddle));
 
         activeKeyCodes = new HashSet<>();
@@ -58,6 +59,16 @@ public class Board extends JPanel implements ActionListener, KeyListener {
         } else if (ball.getPos().x >= BOARD_WIDTH - BALL_WIDTH){
 
         }
+        //implemented check for touching left side
+        if (ball.pos.x >= BOARD_WIDTH - BALL_WIDTH){
+            rightPaddle.setScore(1);
+            ball.resetBall();
+
+            //implemented check for touching right side
+        } else if (ball.pos.x <= 0) {
+            leftPaddle.setScore(1);
+            ball.resetBall();
+        }
 
         repaint();
     }
@@ -72,6 +83,11 @@ public class Board extends JPanel implements ActionListener, KeyListener {
 
         graphics.setFont(new Font("Arial", Font.BOLD, 42));
         graphics.drawString(("Hello World"), 20, 20);
+
+        //drawing basic scoring system to screen
+        graphics.drawString("left paddle score: " + leftPaddle.getScore(), 20, 90);
+        graphics.drawString("right paddle score: " + rightPaddle.getScore(), 20, 140);
+
     }
 
     @Override
