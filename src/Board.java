@@ -43,6 +43,7 @@ public class Board extends JPanel implements ActionListener, KeyListener {
             sprite.tick();
         }
 
+
         if (ball.isColliding(leftPaddle)){
             ball.bounceRight();
         } else if (ball.isColliding(rightPaddle)) {
@@ -80,15 +81,36 @@ public class Board extends JPanel implements ActionListener, KeyListener {
         for(Sprite sprite : sprites) {
             sprite.draw(graphics, this);
         }
+        if(leftPaddle.getScore() == 11 || rightPaddle.getScore() == 11) {
+            sprites.remove(leftPaddle);
+            sprites.remove(rightPaddle);
+            sprites.remove(ball);
 
-        graphics.setFont(new Font("Arial", Font.BOLD, 42));
-        graphics.drawString(("Hello World"), 20, 20);
 
-        graphics.drawString("rally score: " + ball.getRally(),20,190);
+            if (leftPaddle.getScore() < rightPaddle.getScore()) {
+                graphics.drawString("Game Over, Right Wins!", 200, BOARD_HEIGHT / 3);
+                graphics.drawString(("Final Score " + leftPaddle.getScore() + ":" + rightPaddle.getScore()), 220, BOARD_HEIGHT / 2);
 
-        //drawing basic scoring system to screen
-        graphics.drawString("left paddle score: " + leftPaddle.getScore(), 20, 90);
-        graphics.drawString("right paddle score: " + rightPaddle.getScore(), 20, 140);
+                graphics.drawString(("The biggest rally was: " + rightPaddle.getScore()), 190, 320);
+            } else {
+                graphics.drawString("Game Over, Left Wins!", 200, BOARD_HEIGHT / 3);
+                graphics.drawString(("Final Score " + leftPaddle.getScore() + ":" + rightPaddle.getScore()), 220, BOARD_HEIGHT / 2);
+                graphics.drawString(("The biggest rally was: " + leftPaddle.getScore()), 190, 320);
+
+            }
+        }else{
+            graphics.setFont(new Font("Arial", Font.BOLD, 42));
+            graphics.drawString(("Hello World"), 20, 20);
+
+            graphics.drawString("rally score: " + ball.getRally(),20,190);
+
+            //drawing basic scoring system to screen
+            graphics.drawString("left paddle score: " + leftPaddle.getScore(), 20, 90);
+            graphics.drawString("right paddle score: " + rightPaddle.getScore(), 20, 140);
+
+        }
+
+
 
     }
 
