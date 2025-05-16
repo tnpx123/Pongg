@@ -84,6 +84,8 @@ public class Board extends JPanel implements ActionListener, KeyListener {
         graphics.setFont(new Font("Arial", Font.BOLD, 42));
         graphics.drawString(("Hello World"), 20, 20);
 
+        graphics.drawString("rally score: " + ball.getRally(),20,190);
+
         //drawing basic scoring system to screen
         graphics.drawString("left paddle score: " + leftPaddle.getScore(), 20, 90);
         graphics.drawString("right paddle score: " + rightPaddle.getScore(), 20, 140);

@@ -5,6 +5,7 @@ import static utils.Constants.*;
 public class Ball extends Sprite {
     private double vx;
     private double vy;
+    public int rally = 0;
     Random r = new Random();
     private int x;
     private int y;
@@ -34,9 +35,13 @@ public class Ball extends Sprite {
         vy = BALL_SPEED * randomY;
         //position ball to centre of screen
         //reset ball velocity
+
+        rally = 0;
     }
 
-
+    public int getRally() {
+        return rally;
+    }
 
     @Override
     public void tick() {
@@ -51,10 +56,12 @@ public class Ball extends Sprite {
 
     public void bounceRight() {
         vx = Math.abs(vx) * 1.05;
+        rally++;
     }
 
     public void bounceLeft() {
         vx = -Math.abs(vx) * 1.05;
+        rally++;
     }
 
     public void flipVx() {
