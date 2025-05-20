@@ -100,7 +100,6 @@ public class Board extends JPanel implements ActionListener, KeyListener {
             }
         }else{
             graphics.setFont(new Font("Arial", Font.BOLD, 42));
-            graphics.drawString(("Hello World"), 20, 20);
 
             graphics.drawString("rally score: " + ball.getRally(),20,190);
 

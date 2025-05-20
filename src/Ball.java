@@ -5,7 +5,7 @@ import static utils.Constants.*;
 public class Ball extends Sprite {
     private double vx;
     private double vy;
-    public int rally = 0;
+    private int rally = 0;
     Random r = new Random();
     private int x;
     private int y;
