@@ -88,24 +88,26 @@ public class Board extends JPanel implements ActionListener, KeyListener {
 
 
             if (leftPaddle.getScore() < rightPaddle.getScore()) {
-                graphics.drawString("Game Over, Left Wins!", 200, BOARD_HEIGHT / 3);
-                graphics.drawString(("Final Score " + leftPaddle.getScore() + ":" + rightPaddle.getScore()), 220, BOARD_HEIGHT / 2);
+                graphics.setFont(new Font("Arial", Font.BOLD, 42));
+                graphics.drawString("Game Over, Left Wins!", 100, BOARD_HEIGHT / 3);
+                graphics.drawString(("Final Score " + leftPaddle.getScore() + ":" + rightPaddle.getScore()), 110, BOARD_HEIGHT / 2);
 
-                graphics.drawString(("The biggest rally was: " + rightPaddle.getScore()), 190, 320);
+                graphics.drawString(("The biggest rally was: " + rightPaddle.getScore()), 85, 320);
             } else {
-                graphics.drawString("Game Over, Right Wins!", 200, BOARD_HEIGHT / 3);
-                graphics.drawString(("Final Score " + leftPaddle.getScore() + ":" + rightPaddle.getScore()), 220, BOARD_HEIGHT / 2);
-                graphics.drawString(("The biggest rally was: " + leftPaddle.getScore()), 190, 320);
+                graphics.setFont(new Font("Arial", Font.BOLD, 42));
+                graphics.drawString("Game Over, Right Wins!", 100, BOARD_HEIGHT / 3);
+                graphics.drawString(("Final Score " + leftPaddle.getScore() + ":" + rightPaddle.getScore()), 110, BOARD_HEIGHT / 2);
+                graphics.drawString(("The biggest rally was: " + leftPaddle.getScore()), 85, 320);
 
             }
         }else{
             graphics.setFont(new Font("Arial", Font.BOLD, 42));
 
-            graphics.drawString("rally score: " + ball.getRally(),20,190);
+            graphics.drawString("" + ball.getRally(),295,40);
 
             //drawing basic scoring system to screen
-            graphics.drawString("right paddle score: " + leftPaddle.getScore(), 20, 90);
-            graphics.drawString("left paddle score: " + rightPaddle.getScore(), 20, 140);
+            graphics.drawString("" + leftPaddle.getScore(), PADDLE_WIDTH + 20, 40);
+            graphics.drawString("" + rightPaddle.getScore(), BOARD_WIDTH - PADDLE_WIDTH - 40, 40);
 
         }
 

@@ -13,7 +13,7 @@ public final class Constants {
 
     // Player constants
     public static final String PADDLE_IMAGE_PATH = "resources/paddle.jpg";
-    public static final int PADDLE_WIDTH = 60;
+    public static final int PADDLE_WIDTH = 20;
     public static final int PADDLE_HEIGHT = 80;
     public static final int PADDLE_SPEED = 10;
 
