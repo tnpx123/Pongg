@@ -89,12 +89,14 @@ public class Board extends JPanel implements ActionListener, KeyListener {
 
             if (leftPaddle.getScore() < rightPaddle.getScore()) {
                 graphics.setFont(new Font("Arial", Font.BOLD, 42));
+                graphics.setColor(Color.blue);
                 graphics.drawString("Game Over, Left Wins!", 100, BOARD_HEIGHT / 3);
                 graphics.drawString(("Final Score " + leftPaddle.getScore() + ":" + rightPaddle.getScore()), 110, BOARD_HEIGHT / 2);
 
                 graphics.drawString(("The biggest rally was: " + rightPaddle.getScore()), 85, 320);
             } else {
                 graphics.setFont(new Font("Arial", Font.BOLD, 42));
+                graphics.setColor(Color.CYAN);
                 graphics.drawString("Game Over, Right Wins!", 100, BOARD_HEIGHT / 3);
                 graphics.drawString(("Final Score " + leftPaddle.getScore() + ":" + rightPaddle.getScore()), 110, BOARD_HEIGHT / 2);
                 graphics.drawString(("The biggest rally was: " + leftPaddle.getScore()), 85, 320);
